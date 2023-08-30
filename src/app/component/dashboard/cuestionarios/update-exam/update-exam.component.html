@@ -1,0 +1,97 @@
+<mat-card>
+    <mat-card-header>
+        <h1>Editar examen</h1>
+    </mat-card-header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <form (ngSubmit)="saveExam()">
+                    <span *ngIf="name.invalid && (name.dirty || name.touched)">el nombre es
+                        <strong>obligatorio</strong></span>
+                    <mat-form-field class="w100" appearance="outline">
+                        <mat-label>Nombre</mat-label>
+                        <input [(ngModel)]="examData.name" name="name" matInput placeholder="Nombre" required
+                            #name="ngModel">
+                    </mat-form-field>
+                    <span *ngIf="description.invalid && (description.dirty || description.touched)">La descripción es
+                        <strong>obligaroria</strong></span>
+                    <mat-form-field class="w100" appearance="outline">
+                        <mat-label>Descripción</mat-label>
+                        <textarea [(ngModel)]="examData.description" name="description" matInput
+                            placeholder="Descripción" required #description="ngModel"></textarea>
+                    </mat-form-field>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Horas</mat-label>
+                                <input type="number" name="hours" [(ngModel)]="examData.hours" matInput
+                                    placeholder="Nombre" required #hours="ngModel">
+                                <span *ngIf="hours.invalid && (hours.dirty || hours.touched)">Cantidad no válida</span>
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Minutos</mat-label>
+                                <input type="number" [(ngModel)]="examData.minutes" name="minutes" matInput
+                                    placeholder="Nombre" required #minutes="ngModel">
+                                <span *ngIf="minutes.invalid && (minutes.dirty || minutes.touched)">Cantidad no
+                                    válida</span>
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Segundos</mat-label>
+                                <input type="number" name="seconds" [(ngModel)]="examData.seconds" matInput
+                                    placeholder="Nombre" required #seconds="ngModel">
+                                <span *ngIf="seconds.invalid && (seconds.dirty || seconds.touched)">Cantidad no
+                                    válida</span>
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <mat-card-content *ngIf="examData.hours == 0 && examData.minutes==0 && examData.seconds==0"
+                        class="texto-tiempo">Seleccione un tiempo válido para el examen</mat-card-content>
+                    <div class="row">
+                        <div class="col-sm">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Dificultad</mat-label>
+                                <mat-select name="difficulty" [(ngModel)]="examData.difficulty_id" required>
+                                    <mat-option [value]="1">Fácil</mat-option>
+                                    <mat-option [value]="2">Medio-fácil</mat-option>
+                                    <mat-option [value]="3">Medio</mat-option>
+                                    <mat-option [value]="4">Medio-difícil</mat-option>
+                                    <mat-option [value]="5">Difícil</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Total preguntas</mat-label>
+                                <input type="number" name="totalQuestions" [(ngModel)]="examData.total_questions"
+                                    matInput placeholder="Total preguntas" required #totalQuestions="ngModel">
+                                <span
+                                    *ngIf="totalQuestions.invalid && (totalQuestions.dirty || totalQuestions.touched)">Cantidad
+                                    no válida</span>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Total puntos</mat-label>
+                                <input type="number" name="totalPoints" [(ngModel)]="examData.total_points" matInput
+                                    placeholder="Total puntos" required #totalPoints="ngModel">
+                                <span *ngIf="totalPoints.invalid && (totalPoints.dirty || totalPoints.touched)">Cantidad
+                                    no
+                                    válida</span>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="container text-center">
+                        <button mat-raised-button color="basic" routerLink="/dashboard">Cancelar</button>
+                        <button mat-raised-button color="primary" type="submit">Actualizar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</mat-card>

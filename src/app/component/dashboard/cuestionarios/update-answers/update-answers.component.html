@@ -1,0 +1,62 @@
+<mat-card>
+    <mat-card-header style="text-align: center;">
+        <h2 class="header_text">Editar pregunta:</h2>
+    </mat-card-header>
+    <mat-card-title style="text-align: center;">
+        <h1>{{questionData.text}}</h1>
+    </mat-card-title>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <form>
+                    <mat-divider class="mt20"></mat-divider>
+                    <div class="container-fluid mt20">
+                        <mat-card *ngFor="let a of questionData.answers; let j = index" class="mt10">
+                            <div class="row ml20">
+                                <p><b>{{j | abc}}. </b> {{a.text}}</p>
+                                <mat-icon *ngIf="a.is_correct" style="color:green;">check_circle icon</mat-icon>
+                                <mat-icon *ngIf="!a.is_correct" style="color: red;">cancel icon</mat-icon>
+                                <div class="col" style="text-align:right;">
+                                    <button mat-mini-fab color="accent"
+                                        aria-label="Example icon button with a delete icon" type='button' class="ml20"
+                                        (click)="editOption(a.id, j)">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-mini-fab color="warn"
+                                        aria-label="Example icon button with a delete icon" type='button' class="ml20"
+                                        (click)="removeAnswer(a.id)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </mat-card>
+                    </div>
+                    <div class="row" style="display: flex; justify-content: center; margin-top: 20px;">
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Texto de la respuesta</mat-label>
+                            <textarea [(ngModel)]="answerData.text" name="textAnswer" matInput
+                                placeholder="Texto de la respuesta"></textarea>
+                        </mat-form-field>
+                    </div>
+                    <div class="row" style="align-items: center; display: flex; justify-content: center;">
+                        <section>
+                            Es correcta?
+                            <mat-slide-toggle name="isCorrect" color="accent" [(ngModel)]="answerData.is_correct">
+                            </mat-slide-toggle>
+                            <button class="button_add" mat-raised-button type='button' (click)="saveAnswer()"
+                                >Agregar respuesta</button>
+                        </section>
+                    </div>
+                    <div class="col"></div>
+                    <div class="d-flex justify-content-center">
+                    </div>
+                    <div style="text-align: end; margin-top:20px;">
+                        <button mat-raised-button color="accent" type='button'
+                            routerLink="/dashboard/view-questions">Volver</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</mat-card>

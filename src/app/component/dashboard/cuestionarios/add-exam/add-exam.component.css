@@ -1,0 +1,12 @@
+.w100{
+    width: 100%;
+}
+span{
+    color: #f44336de;
+}
+.texto-tiempo{
+    color: #f44336de; text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgb(250, 233, 233);
+    margin-bottom: 30px;
+}

@@ -1,0 +1,20 @@
+<button mat-icon-button style="float: right;margin: 5px;" [mat-dialog-close]="false">
+    <mat-icon>close</mat-icon>
+</button>
+<mat-dialog-content>
+    <header>
+        <h3><b>{{data?.title}}</b></h3>
+    </header>
+    <p><mat-form-field style="width: 400px;">
+            <input matInput placeholder="Escriba su respuesta" [(ngModel)]="data.text">
+        </mat-form-field></p>
+        <button mat-raised-button color="accent" [mat-dialog-close]="true" (click)="updateOption(data.modalId, data.text, data.isCorrect)">
+        {{data?.confirmCaption}}
+    </button>
+    <button mat-raised-button color="basic" [mat-dialog-close]="true">
+        {{data?.cancelCaption}}
+    </button>
+    <mat-slide-toggle name="isCorrect" color="accent" style="margin-left: 50px;" [(ngModel)]="data.isCorrect">
+        Es correcta?
+    </mat-slide-toggle>
+</mat-dialog-content>

@@ -1,0 +1,54 @@
+<div class="text-center">
+    <h1>Bienvenido {{ nombreUsuario }}!</h1>
+</div>
+<p class="lead text-muted">Exámenes creados:</p>
+<div *ngIf="quizzes.length==0">
+    <h2>
+        No hay examenes creados
+    </h2>
+</div>
+<div class="row justify-content-center">
+    <app-loading *ngIf="loading"></app-loading>
+</div>
+<mat-card *ngFor="let q of quizzes" class="mt10">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>
+            {{q.name}}
+        </mat-card-title>
+        <mat-card-subtitle>
+            <star-rating labelText="Dificultad:" [rating]="q.difficulty_id"></star-rating>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>{{q.description}}</p>
+        <mat-grid-list cols="3" rowHeight="4:1">
+            <mat-grid-tile>
+                <p><mat-icon font-s aria-hidden="false" fontIcon="timer"></mat-icon>Duración:
+                    {{q.hours}}:{{q.minutes}}:{{q.seconds}}</p>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <p><mat-icon font-s aria-hidden="false" fontIcon="poll"></mat-icon>Puntos totales para pasar:
+                    {{q.total_points}}</p>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <p><mat-icon font-s aria-hidden="false" fontIcon="poll"></mat-icon>Preguntas por examen:
+                    {{q.total_questions}}</p>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button mat-flat-button color="primary" class="ml20" (click)="questions(q.id, q.name)">Preguntas:
+            {{q.total_current_questions}}</button>
+        <button mat-flat-button color="accent" class="ml20" (click)="openUpdate(q.id)">Actualizar</button>
+        <button mat-flat-button style="background-color:rgb(238, 97, 16); color: white;" class="ml20" routerLink="/dashboard/load-questions">Cargar
+            preguntas</button>
+        <button mat-fab color="warn" aria-label="Example icon button with a delete icon" class="ml20"
+            (click)="deleteExam(q.id)">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </mat-card-actions>
+</mat-card>
+<div class="container text-center mt20">
+    <button style="background-color: #28a745; color: white;" mat-raised-button routerLink="/dashboard/add-exam">Nuevo Examen</button>
+</div>

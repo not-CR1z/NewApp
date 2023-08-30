@@ -1,0 +1,21 @@
+.jumbotron{
+    background-color: white;
+}
+
+.btn-cues{
+    padding: 1rem 2rem;
+    border-radius: 300px;
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  h2{
+    color: rgb(245, 56, 23);
+  }
+  
+  .button_add {
+    background-color: #28a745;
+    color: white;
+}

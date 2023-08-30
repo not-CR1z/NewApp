@@ -1,0 +1,46 @@
+<mat-card>
+    <mat-card-header>
+        <h1>Cambiar pregunta</h1>
+    </mat-card-header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <form (ngSubmit)="updateQuestion()">
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="w100" appearance="outline">
+                                <mat-label>Texto de preguta</mat-label>
+                                <textarea [(ngModel)]="questionData.text" name="text" matInput placeholder="Texto"
+                                    required #texto="ngModel"></textarea>
+                            </mat-form-field>
+                            <br>
+                            <span *ngIf="texto.invalid && (texto.dirty || texto.touched)" class="text-danger">Escriba su
+                                pregunta</span>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Dificultad</mat-label>
+                                <mat-select name="difficulty" [(ngModel)]="questionData.type_id" required
+                                    #difficulty="ngModel">
+                                    <mat-option [value]=1>Fácil</mat-option>
+                                    <mat-option [value]=2>Medio-fácil</mat-option>
+                                    <mat-option [value]=3>Medio</mat-option>
+                                    <mat-option [value]=4>Medio-difícil</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <br>
+                            <span *ngIf="difficulty.touched && difficulty.value==0" class="text-danger">Seleccione una dificultad</span>
+                        </div>
+                    </div>
+                    <mat-divider class="mt20"></mat-divider>
+
+                    <div class="container text-center mt20">
+                        <button mat-raised-button color="basic" type='button' routerLink="/dashboard/view-questions">Cancelar</button>
+                        <button mat-raised-button color="primary" type="submit">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</mat-card>

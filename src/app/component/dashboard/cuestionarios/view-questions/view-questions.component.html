@@ -1,0 +1,41 @@
+<h5 class="text-center">Listado de preguntas para: <h2><b style="text-decoration: underline;">{{quizz_title}}</b></h2>
+</h5>
+<div class="container text-center mt20">
+    <button style="background-color: #28a745; color: white;" mat-raised-button type="button" routerLink="/dashboard/add-questions">
+        Nueva pregunta
+    </button>
+</div>
+
+<div class="bootstrap-wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <mat-card *ngFor="let q of questions; let i = index" class="mt10">
+                <mat-card-content>
+                    <p>
+                        <b>{{i + 1}})<span class="ml20" [innerHTML]="q.text"></span></b>
+                    </p>
+                    <div class="container-fluid">
+                        <div class="row ml20" *ngFor="let a of q.answers; let j = index">
+                            <b>{{j | abc}})</b>
+                            <mat-icon *ngIf="a.is_correct" style="color:green;">check_circle icon</mat-icon>
+                            <mat-icon *ngIf="!a.is_correct" style="color: red;">cancel icon</mat-icon>
+                            {{a.text}}
+                        </div>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                    <button mat-flat-button color="primary" class="ml20" (click)="toUpdateAnswer(q.id)">Respuestas:
+                        {{q.answers.length}}</button>
+                    <button mat-flat-button color="accent" class="ml20" (click)="toUpdateQuestion(q.id)">Actualizar
+                        pregunta</button>
+                    <div style="margin-left: 20px;">
+                        <button mat-fab color="warn" (click)="deleteQuestion(q.id)"
+                            aria-label="Example icon button with a delete icon" class="m20">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

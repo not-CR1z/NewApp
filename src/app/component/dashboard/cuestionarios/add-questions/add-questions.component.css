@@ -1,0 +1,19 @@
+.w100 {
+  width: 100%;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin {
+  margin: 10px;
+}
+
+.button_add {
+  background-color: #28a745;
+  color: white;
+}
